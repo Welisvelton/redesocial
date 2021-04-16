@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 namespace RedeSocial;
 
-abstract class aRedeSocial{
+abstract class aRedeSocial
+{
     protected $nome;
     protected $descricao;
 
@@ -10,9 +11,5 @@ abstract class aRedeSocial{
     {
         $this->nome = $nome;
         $this->descricao = $descricao;
-
     }
 }
-
-
-?>
