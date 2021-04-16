@@ -1,23 +1,33 @@
-<?php 
+<?php
 
 namespace ConexaoDB;
 
-class ConexaoDB
+use PDO;
+use PDOException;
+
+class ConexaoDB extends PDO
 {
-    private $conexao;
+    private static $conexao;
 
-    public function __construct()
+    private function __construct()
     {
-        
+        //
     }
 
-    public function getConexao()
+    public function getConexao(): ConexaoDB
     {
-        if($this->conexao != null){
-            return $this->conexao;
+        if (!isset($this->conexao)) {
+            try {
+                // TODO bdname, senha
+                self::$conexao = new PDO('mysql:host=localhost; dbname=', 'root', '');
+                self::$conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$conexao->exec('set names utf8');
+                return self::$conexao;
+            } catch (PDOException $e) {
+                echo ($e->getMessage());
+            }
         }
-        
+
+        return $this->conexao;
     }
-
-
 }
