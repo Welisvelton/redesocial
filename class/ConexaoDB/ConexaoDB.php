@@ -9,14 +9,14 @@ class ConexaoDB extends PDO
 {
     private static $conexao;
 
-    private function __construct()
+    public function __construct()
     {
         //
     }
 
-    public function getConexao(): ConexaoDB
+    public function getConexao(): PDO
     {
-        if (!isset($this->conexao)) {
+        if (empty(self::$conexao)) {
             try {
                 // TODO bdname, senha
                 self::$conexao = new PDO('mysql:host=localhost; dbname=ew_rede_social', 'root', '');

@@ -1,7 +1,7 @@
 <?php 
 
-namespace UsuarioDAO;
-use ConexaoDB\ConexaoDB;
+namespace Usuario\DAO;
+
 use Exception;
 use PDOException;
 use Usuario\aUsuario;
@@ -9,10 +9,10 @@ use PDO;
 
 class UsuarioDAO
 {
-    private $conexao;
-    private $tableName = "Usuario";
+    protected $conexao;
+    protected $tableName = "Usuario";
     
-    public function __construct(ConexaoDB $conexao)
+    public function __construct($conexao)
     {
         $this->conexao = $conexao;
     }
@@ -66,7 +66,7 @@ class UsuarioDAO
                 email varchar(40),
                 senha varchar(20),
                 genero varchar(1)
-            ) Engine=InnoDB collate utf8_unicode_ci CHARSET=utf8";
+            ) Engine=InnoDB CHARSET=utf8 collate utf8_unicode_ci";
 
             $stmt = $this->conexao->prepare($sql);
             return $stmt->execute();
