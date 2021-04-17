@@ -4,9 +4,10 @@ namespace RedeSocial;
 
 class Facebook extends aRedeSocial
 {
+
   public function getNome(): string
   {
-    return $this->name;
+    return $this->nome;
   }
 
   public function setNome($nome): void

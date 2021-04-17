@@ -15,6 +15,7 @@ class Usuario extends aUsuario implements PrototypeUsuario
     ) {
         $this->nome = $nome;
         $this->sobrenome = $sobrenome;
+        $this->nascimento = $nascimento;
         $this->email = $email;
         $this->senha = $senha;
         $this->genero = $genero;

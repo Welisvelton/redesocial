@@ -19,7 +19,7 @@ class ConexaoDB extends PDO
         if (!isset($this->conexao)) {
             try {
                 // TODO bdname, senha
-                self::$conexao = new PDO('mysql:host=localhost; dbname=', 'root', '');
+                self::$conexao = new PDO('mysql:host=localhost; dbname=ew_rede_social', 'root', '');
                 self::$conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$conexao->exec('set names utf8');
                 return self::$conexao;
