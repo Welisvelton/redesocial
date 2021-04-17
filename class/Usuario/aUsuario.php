@@ -12,6 +12,8 @@ abstract class aUsuario
     protected $genero;
 
 
+
+
     public function getNome()
     {
         return $this->nome;

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Usuario\DAO;
 
@@ -6,20 +6,84 @@ use Exception;
 use PDOException;
 use Usuario\aUsuario;
 use PDO;
+use Usuario\Usuario;
 
 class UsuarioDAO
 {
     protected $conexao;
     protected $tableName = "usuario";
-    
+
     public function __construct($conexao)
     {
         $this->conexao = $conexao;
     }
 
-    public function inserir(aUsuario $usuario):bool
+    public function checaUsuario($email, $senha)
     {
-        try{
+        try {
+
+            $sql = "SELECT * FROM {$this->tableName} WHERE email=:email AND senha=:senha";
+
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->bindValue(":email", $email, PDO::PARAM_STR);
+            $stmt->bindValue(":senha", $senha, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            $return = $stmt->fetch(PDO::FETCH_OBJ);
+
+            if (!empty($return->id)) {
+                return new Usuario(
+                    $return->nome,
+                    $return->sobrenome,
+                    $return->data_nascimento,
+                    $return->email,
+                    $return->senha,
+                    $return->genero
+                );
+            }
+
+            return false;
+
+        } catch (PDOException $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function getUsuarioId($id)
+    {
+        try {
+
+            $sql = "SELECT * FROM {$this->tableName} WHERE id=:id";
+
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->bindValue(":id", $id, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $return = $stmt->fetch(PDO::FETCH_OBJ);
+
+            if (!empty($return->id)) {
+                return new Usuario(
+                    $return->nome,
+                    $return->sobrenome,
+                    $return->data_nascimento,
+                    $return->email,
+                    $return->senha,
+                    $return->genero
+                );
+            }
+
+            return false;
+
+        } catch (PDOException $e) {
+            throw new Exception($e->getMessage());
+        }
+
+    }
+
+    public function inserir(aUsuario $usuario): bool
+    {
+        try {
 
             $sql = "INSERT INTO {$this->tableName} (nome, sobrenome, data_nascimento, email, senha, genero)
             value (:nome, :sobrenome, :data_nascimento, :email, :senha, :genero)";
@@ -31,35 +95,32 @@ class UsuarioDAO
             $stmt->bindValue(":email", $usuario->getEmail(), PDO::PARAM_STR);
             $stmt->bindValue(":senha", $usuario->getSenha(), PDO::PARAM_STR);
             $stmt->bindValue(":genero", $usuario->getGenero(), PDO::PARAM_STR);
-            
+
             return $stmt->execute();
-
-        } catch(PDOException $e){
+        } catch (PDOException $e) {
             throw new Exception($e->getMessage());
-
         }
     }
 
-    public function deletar(aUsuario $usuario):bool
+    public function deletar(aUsuario $usuario): bool
     {
-        try{
+        try {
 
             $sql = "DELETE FROM $this->tableName WHERE id=:id";
 
             $stmt = $this->conexao->prepare($sql);
             $stmt->bindValue(":id", $usuario->getId(), PDO::PARAM_STR);
-            
+
             return $stmt->execute();
-
-        } catch(PDOException $e){
-
+        } catch (PDOException $e) {
+            throw new Exception("Houve um erro ao tentar excluir um usuário: Usuario DAO - L " . $e->getLine());
         }
     }
 
     /**
-     * Basta chamar este método para criar a tabela de usuário no banco de dados,
+     * Chamar este método criará a tabela de usuário no banco de dados,
      * especificado na classe ConexaoDB
-    */
+     */
     public function createTable()
     {
         try {
@@ -75,9 +136,8 @@ class UsuarioDAO
 
             $stmt = $this->conexao->prepare($sql);
             return $stmt->execute();
-
         } catch (\PDOException $e) {
-            throw new Exception("Erro ao criar a tabela. " . $e->getMessage());
+            throw new Exception("Erro ao criar a tabela. Usuario DAO - L " . $e->getLine());
         }
     }
-} 
+}

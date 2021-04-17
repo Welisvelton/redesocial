@@ -21,8 +21,11 @@ class Usuario extends aUsuario implements PrototypeUsuario
         $this->genero = $genero;
     }
 
+
     public function clonar(): Usuario
     {
         return clone $this;
     }
+
+
 }
