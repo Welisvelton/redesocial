@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Usuario\DAO;
 
@@ -11,15 +11,16 @@ class UsuarioDAO
 {
     protected $conexao;
     protected $tableName = "Usuario";
-    
+
     public function __construct($conexao)
     {
+        // TODO não precisa passar a conexao pelo construtor, só utilizar o  ConexaoDB::getConexao()
         $this->conexao = $conexao;
     }
 
-    public function inserir(aUsuario $usuario):bool
+    public function inserir(aUsuario $usuario): bool
     {
-        try{
+        try {
 
             $sql = "INSERT INTO {$this->tableName} (nome, sobrenome, data_nascimento, email, senha, genero)
             value (:nome, :sobrenome, :data_nascimento, :email, :senha, :genero)";
@@ -31,27 +32,23 @@ class UsuarioDAO
             $stmt->bindValue(":email", $usuario->getEmail(), PDO::PARAM_STR);
             $stmt->bindValue(":senha", $usuario->getSenha(), PDO::PARAM_STR);
             $stmt->bindValue(":genero", $usuario->getGenero(), PDO::PARAM_STR);
-            
+
             return $stmt->execute();
-
-        } catch(PDOException $e){
-
+        } catch (PDOException $e) {
         }
     }
 
-    public function deletar(aUsuario $usuario):bool
+    public function deletar(aUsuario $usuario): bool
     {
-        try{
+        try {
 
             $sql = "DELETE FROM $this->tableName WHERE id=:id";
 
             $stmt = $this->conexao->prepare($sql);
             $stmt->bindValue(":id", $usuario->getId(), PDO::PARAM_STR);
-            
+
             return $stmt->execute();
-
-        } catch(PDOException $e){
-
+        } catch (PDOException $e) {
         }
     }
 
@@ -70,9 +67,8 @@ class UsuarioDAO
 
             $stmt = $this->conexao->prepare($sql);
             return $stmt->execute();
-
         } catch (\PDOException $e) {
             throw new Exception("Erro ao criar a tabela. " . $e->getMessage());
         }
     }
-} 
+}

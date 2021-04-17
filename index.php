@@ -8,7 +8,9 @@ use Usuario\DAO\UsuarioDAO;
 require(__DIR__."/class/Autoloading.php");
 
 try{
+    //  TODO no padrão singleton não se pode instanciar a classe conexão, seu construtor deve ser privado, verifica o comentario na classe UsuarioDAO
 $conn = new ConexaoDB();
+// 
 $usuarioDAO = new UsuarioDAO($conn->getConexao());
 $usuarioDAO->createTable();
 }
@@ -26,7 +28,3 @@ $usu1 = $factoryUsuario->criarUsuario("Welisvelton", "Cabral", "1993-07-27", "we
 
 
 echo $facebook->getNome();
-
-
-
-?>
