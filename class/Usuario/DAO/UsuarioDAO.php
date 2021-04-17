@@ -10,7 +10,7 @@ use PDO;
 class UsuarioDAO
 {
     protected $conexao;
-    protected $tableName = "Usuario";
+    protected $tableName = "usuario";
     
     public function __construct($conexao)
     {
@@ -27,7 +27,7 @@ class UsuarioDAO
             $stmt = $this->conexao->prepare($sql);
             $stmt->bindValue(":nome", $usuario->getNome(), PDO::PARAM_STR);
             $stmt->bindValue(":sobrenome", $usuario->getSobrenome(), PDO::PARAM_STR);
-            $stmt->bindValue(":nascimento", $usuario->getNascimento(), PDO::PARAM_STR);
+            $stmt->bindValue(":data_nascimento", $usuario->getNascimento(), PDO::PARAM_STR);
             $stmt->bindValue(":email", $usuario->getEmail(), PDO::PARAM_STR);
             $stmt->bindValue(":senha", $usuario->getSenha(), PDO::PARAM_STR);
             $stmt->bindValue(":genero", $usuario->getGenero(), PDO::PARAM_STR);
@@ -35,6 +35,7 @@ class UsuarioDAO
             return $stmt->execute();
 
         } catch(PDOException $e){
+            throw new Exception($e->getMessage());
 
         }
     }
@@ -55,6 +56,10 @@ class UsuarioDAO
         }
     }
 
+    /**
+     * Basta chamar este método para criar a tabela de usuário no banco de dados,
+     * especificado na classe ConexaoDB
+    */
     public function createTable()
     {
         try {

@@ -1,7 +1,9 @@
 <?php
 
 use ConexaoDB\ConexaoDB;
-use RedeSocial\Factory\FactoryRedeSocial;
+use RedeSocial\Factory\FactoryInstagram;
+use RedeSocial\Factory\FactoryFacebook;
+use RedeSocial\Factory\FactoryTikTok;
 use Usuario\Factory\FactoryUsuario;
 use Usuario\DAO\UsuarioDAO;
 
@@ -17,15 +19,24 @@ catch(Exception $e) {
 }
 
 
-$factoryRedeSocial = new FactoryRedeSocial();
-$facebook = $factoryRedeSocial->criarFacebook();
+$factory = new FactoryTikTok();
+$redeSocial = $factory->criarRedeSocial();
+
 
 $factoryUsuario = new FactoryUsuario();
-
 $usu1 = $factoryUsuario->criarUsuario("Welisvelton", "Cabral", "1993-07-27", "welisvelton@gmail.com", "123456", "M");
 
 
-echo $facebook->getNome();
+echo $redeSocial->getNome();
+
+
+try{
+    $usuarioDAO->inserir($usu1);
+
+} catch(Exception $e){
+    echo $e->getMessage();
+}
+
 
 
 

@@ -2,6 +2,7 @@
 
 namespace RedeSocial;
 
-class TikTok implements aRedeSocial
+class TikTok extends aRedeSocial
 {
+
 }
