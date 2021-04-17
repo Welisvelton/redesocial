@@ -2,7 +2,7 @@
 
 namespace RedeSocial\Feed;
 
-class FeedFacebook extends AbstractFeed
+class FeedFacebook extends aFeed
 {
 
 }

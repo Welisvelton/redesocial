@@ -2,7 +2,7 @@
  
 namespace RedeSocial\Feed;
 
-class FeedInstagram extends AbstractFeed
+class FeedInstagram extends aFeed
 {
 
 }

@@ -1,5 +1,8 @@
 <?php
 use ConexaoDB\ConexaoDB;
+use Mensagem\BuilderMensagem;
+use Mensagem\DAO\MensagemDAO;
+use Mensagem\Mensagem;
 use RedeSocial\Factory\{
     FactoryInstagram,
     FactoryFacebook, 
@@ -15,8 +18,8 @@ use Usuario\{
 require(__DIR__ . "/class/Autoloading.php");
 
 try {
-    $conn = new ConexaoDB();
-    $usuarioDAO = new UsuarioDAO($conn->getConexao());
+    $conn = ConexaoDB::getConexao();
+    $usuarioDAO = new UsuarioDAO($conn);
     $usuarioDAO->createTable();
 } catch (Exception $e) {
     echo $e->getMessage();
@@ -48,7 +51,22 @@ if (!empty($_POST['email'])) {
 
 
 try {
-    // $usuarioDAO->inserir($usu1);
+   // $msgDAO = new MensagemDAO($conn);
+    
+    $bmsg = new BuilderMensagem();
+    $bmsg->criarTexto("Este é o texto da mensagem ok!"); 
+    $bmsg->criarAudio("Este é meu áudio");
+    $msg = $bmsg->getResult();
+
+
+ $encaminhar = $msg->clonar();
+
+    $encaminhar->setDe_usuario(3);
+
+    
+
+ 
+
 } catch (Exception $e) {
     echo $e->getMessage();
 }
@@ -111,6 +129,13 @@ try {
 
 
     <h1><?= $redeSocial->getNome() ?></h1>
+
+    <?php  echo  $msg->getConteudo();?><br/>
+
+   De: <?php  echo  $msg->getDe_usuario();?> <br/>
+
+    De:<?php  echo  $encaminhar->getDe_usuario();?><br/>
+
 
 
 </body>

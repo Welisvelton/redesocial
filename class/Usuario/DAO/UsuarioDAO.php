@@ -11,13 +11,15 @@ use Usuario\Usuario;
 class UsuarioDAO
 {
     protected $conexao;
+
     protected $tableName = "usuario";
 
-    public function __construct($conexao)
+    public function __construct(PDO $conexao)
     {
+        // TODO não precisa passar a conexao pelo construtor, só utilizar o  ConexaoDB::getConexao()
         $this->conexao = $conexao;
     }
-
+    
     public function checaUsuario($email, $senha)
     {
         try {
