@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 namespace Usuario;
 
 interface PrototypeUsuario
 {
-    public function clonar():Usuario;
+    //TODO Remover classe, utilizar o prototype geral
+    public function clonar(): Usuario;
 }

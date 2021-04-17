@@ -9,12 +9,12 @@ class ConexaoDB extends PDO
 {
     private static $conexao;
 
-    public function __construct()
+    private function __construct()
     {
         //
     }
 
-    public function getConexao(): PDO
+    public static function getConexao(): PDO
     {
         if (empty(self::$conexao)) {
             try {
@@ -28,6 +28,6 @@ class ConexaoDB extends PDO
             }
         }
 
-        return $this->conexao;
+        return self::$conexao;
     }
 }
