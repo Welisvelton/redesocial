@@ -60,11 +60,6 @@ try {
 }
 
 
-
-
-
-
-
 try {
   // $msgDAO = new MensagemDAO($conn);
 
