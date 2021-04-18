@@ -6,7 +6,7 @@ use Mensagem\Mensagem;
 
 class BuilderMensagem implements IBuilderMensagem
 {
-  private Mensagem $result;
+  private $result;
 
   public function __construct()
   {

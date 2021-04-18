@@ -4,5 +4,5 @@
 </div>
 
 <div class="botao-excluir-conta">
-<a href="cadastro.php?excluir=true" > Excluir conta </a>
+<a href="cadastrar.php?excluir=true" > Excluir conta </a>
 </div>

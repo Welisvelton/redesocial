@@ -54,7 +54,7 @@ class Mensagem implements Prototype
     $this->para_usuario = $para_usuario;
   }
 
-  public function clonar(): Mensagem
+  public function clonar()
   {
     return clone $this;
   }

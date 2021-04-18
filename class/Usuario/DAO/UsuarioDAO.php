@@ -3,6 +3,7 @@
 namespace Usuario\DAO;
 
 use Exception;
+use Mensagem\DAO\MensagemDAO;
 use PDOException;
 use Usuario\aUsuario;
 use PDO;
@@ -144,16 +145,20 @@ class UsuarioDAO
     }
   }
 
-  public function deletar(aUsuario $usuario): bool
+  public function deletar($id): bool
   {
     try {
+
+      $msgDAO = new MensagemDAO($this->conexao);
+      $msgDAO->deletarPorUsuario($id);
 
       $sql = "DELETE FROM $this->tableName WHERE id=:id";
 
       $stmt = $this->conexao->prepare($sql);
-      $stmt->bindValue(":id", $usuario->getId(), PDO::PARAM_STR);
+      $stmt->bindValue(":id", $id, PDO::PARAM_STR);
 
       return $stmt->execute();
+
     } catch (PDOException $e) {
       throw new Exception("Houve um erro ao tentar excluir um usuário: Usuario DAO - L " . $e->getLine());
     }

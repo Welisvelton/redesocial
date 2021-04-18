@@ -89,97 +89,8 @@ try {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rede Social</title>
-  <style>
-    body,
-    html {
-      margin: 0px;
-      padding: 0px;
-      border: none;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      font-size: 16px;
-    }
+  <link href="/assets/css/style.css" rel="stylesheet" ></link>
 
-    input,
-    textarea {
-      outline: none;
-    }
-
-    .barra-superior {
-      width: 100%;
-      height: auto;
-      background-color: #34487c;
-      color: white;
-      padding: 8px 5px;
-      display: flex;
-      justify-content: space-between;
-      flex-flow: flex-end;
-      box-sizing: border-box;
-      margin-bottom: 20px;
-    }
-
-    .form-login {
-      width: auto;
-      min-width: 30px;
-      text-align: right;
-    }
-
-    .container-chat {
-      width: 90%;
-      max-width: 300px;
-      height: auto;
-      max-height: 500px;
-      position: absolute;
-      right: 20px;
-      bottom: 0px;
-      background-color: #d6dced;
-      box-sizing: border-box;
-      padding: 8px;
-      border: #34487c;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
-    }
-
-    .container-chat>iframe {
-      width: 100%;
-      border: none;
-      height: 400px;
-    }
-
-    .botao-excluir-conta {
-      position: fixed;
-      bottom: 2px;
-      left: 2px;
-    }
-
-    .container-usuarios {
-      display: flex;
-      flex-direction: column;
-      width: 50%;
-      max-width: 400px;
-      height: auto;
-      background: #d6dced;
-      padding: 10px;
-      box-sizing: border-box;
-    }
-
-    .box-usuarios {
-      display: flex;
-      margin-bottom: 10px;
-      align-items: center;
-
-    }
-
-    .avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      border: #34487c 3px solid;
-      margin-right: 10px;
-      background-color: #34487c;
-    }
-
-    .nome {}
-  </style>
 </head>
 
 <body>
@@ -207,9 +118,8 @@ try {
   </div>
 
   <div class="container-usuarios">
-    <div>AMIGOS
-      <BR />
-      <hr />
+    <div>
+  
       <br>
     </div>
     <?php if (!empty($usu)) : ?>
@@ -221,30 +131,30 @@ try {
             <div>
               <?= $amigos->getNome(); ?>
             </div>
-            </div>
+          </div>
         </a>
 
 
-  
-<?php endforeach; ?>
-<?php endif ?>
-Clique para iniciar uma conversa
-</div>
 
-
-
-
-<?php if (!empty($usu)) : ?>
-
-  <div class="container-chat">
-
-    <iframe src="" id="chat" name="chat"></iframe>
+      <?php endforeach; ?>
+    <?php endif ?>
+    Clique para iniciar uma conversa
   </div>
 
 
-<?php endif; ?>
 
-<?php include(__DIR__ . "/footer.php"); ?>
+
+  <?php if (!empty($usu)) : ?>
+
+    <div class="container-chat">
+
+      <iframe src="" id="chat" name="chat"></iframe>
+    </div>
+
+
+  <?php endif; ?>
+
+  <?php include(__DIR__ . "/footer.php"); ?>
 </body>
 
 </html>

@@ -22,13 +22,13 @@ class MensagemDAO
     try {
 
       $sql = "SELECT * FROM {$this->tableName} 
-      WHERE de_usuario=:de_usuario or de_usuario=:para_usuario
-      AND para_usuario=:de_usuario or para_usuario=:para_usuario 
+      WHERE de_usuario=:de_usuario AND para_usuario=:para_usuario OR
+       de_usuario=:para_usuario  AND para_usuario=:de_usuario
       ORDER by data_hora ASC";
 
       $stmt = $this->conexao->prepare($sql);
-      $stmt->bindValue(":de_usuario", $deUsu, PDO::PARAM_STR);
-      $stmt->bindValue(":para_usuario", $paraUsu, PDO::PARAM_STR);
+      $stmt->bindValue(":de_usuario", $deUsu, PDO::PARAM_INT);
+      $stmt->bindValue(":para_usuario", $paraUsu, PDO::PARAM_INT);
 
       $stmt->execute();
 
@@ -55,6 +55,35 @@ class MensagemDAO
     }
   }
 
+  public function getMensagemPorId($id){
+    try {
+
+      $sql = "SELECT * FROM {$this->tableName} WHERE id=:id ";
+
+      $stmt = $this->conexao->prepare($sql);
+      $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+      $stmt->execute();
+
+      $ms = $stmt->fetch(PDO::FETCH_OBJ);
+
+      if (!empty($ms)) {
+          $mtemp = new Mensagem();
+          $mtemp->setId($ms->id);
+          $mtemp->setConteudo($ms->conteudo);
+          $mtemp->setDe_usuario($ms->de_usuario);
+          $mtemp->setPara_usuario($ms->para_usuario);
+          $mtemp->setData_hora($ms->data_hora);
+         
+        return $mtemp;
+      }
+
+      return false;
+
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+  }
+
   public function inserir(Mensagem $mensagem): bool
   {
     try {
@@ -64,8 +93,8 @@ class MensagemDAO
 
       $stmt = $this->conexao->prepare($sql);
       $stmt->bindValue(":conteudo", $mensagem->getConteudo(), PDO::PARAM_STR);
-      $stmt->bindValue(":de_usuario", $mensagem->getDe_usuario(), PDO::PARAM_STR);
-      $stmt->bindValue(":para_usuario", $mensagem->getPara_usuario(), PDO::PARAM_STR);
+      $stmt->bindValue(":de_usuario", $mensagem->getDe_usuario(), PDO::PARAM_INT);
+      $stmt->bindValue(":para_usuario", $mensagem->getPara_usuario(), PDO::PARAM_INT);
 
       return $stmt->execute();
     } catch (PDOException $e) {
@@ -83,6 +112,21 @@ class MensagemDAO
     try {
 
       $sql = "DELETE FROM $this->tableName WHERE id=:id";
+
+      $stmt = $this->conexao->prepare($sql);
+      $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+      return $stmt->execute();
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function deletarPorUsuario($id): bool
+  {
+    try {
+
+      $sql = "DELETE FROM $this->tableName WHERE de_usuario=:id or para_usuario=:id";
 
       $stmt = $this->conexao->prepare($sql);
       $stmt->bindValue(":id", $id, PDO::PARAM_INT);

@@ -7,7 +7,7 @@ use RedeSocial\TikTok;
 
 class FactoryTikTok implements FactoryRedeSocial
 {
-    public function criarRedeSocial(): TikTok
+    public function criarRedeSocial(): aRedeSocial
     {
         return new TikTok("TikTok", "Se divirta com vários filtros nesta rede social");
     }

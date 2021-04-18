@@ -21,6 +21,7 @@ use Usuario\{
 require(__DIR__ . "/class/Autoloading.php");
 
 try {
+
   /* Cria a rede social */
   $factory = new FactoryFacebook();
   $redeSocial = $factory->criarRedeSocial();
@@ -28,6 +29,13 @@ try {
 
   $conn = ConexaoDB::getConexao();
   $usuarioDAO = new UsuarioDAO($conn);
+
+
+  if(!empty($_GET['excluir'])){
+    $idExclusao = LoginUsuario::getDadosLogin()['idUsuario'];
+    $usuarioDAO->deletar($idExclusao);
+    LoginUsuario::logout();
+  }
 
 
   if (!empty($_POST['email']) && !empty($_POST['nome']) && !empty($_POST['senha'])) {
@@ -300,6 +308,7 @@ try {
       <select name="genero" class="input input-100">
         <option value="F">Feminino</option>
         <option value="M">Masculino</option>
+        <option value="O">Outro</option>
       </select>
       <input type="password" name="senha" value="" placeholder="Senha" class="input input-100" />
 
