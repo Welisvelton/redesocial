@@ -17,7 +17,6 @@ class UsuarioDAO
 
   public function __construct(PDO $conexao)
   {
-    // TODO não precisa passar a conexao pelo construtor, só utilizar o  ConexaoDB::getConexao()
     $this->conexao = $conexao;
   }
 
@@ -118,7 +117,6 @@ class UsuarioDAO
       }
 
       return false;
-
     } catch (PDOException $e) {
       throw new Exception($e->getMessage());
     }
@@ -158,7 +156,6 @@ class UsuarioDAO
       $stmt->bindValue(":id", $id, PDO::PARAM_STR);
 
       return $stmt->execute();
-
     } catch (PDOException $e) {
       throw new Exception("Houve um erro ao tentar excluir um usuário: Usuario DAO - L " . $e->getLine());
     }
