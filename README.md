@@ -66,11 +66,14 @@ $ http://localhost/phpmyadmin/
 
 # Importe o arquivo BANCO DE DADOS.sql que está dentro da pasta ARQUIVOS DE PROJETO e clique em executar
 
+# Acesse o video para configurar e habilitar o Virtual Host
+$ https://youtu.be/_RgYvCqzUKg
+
 # Em uma nova aba do seu navegador acesse a url abaixo
-$ http://localhost/redesocial/instalar.php
+$ http://redesocial.local/instalar.php
 
 # Logo em seguida acesse
-$ http://localhost/redesocial/
+$ http://redesocial.local/
 ```
 
 ### Versões
