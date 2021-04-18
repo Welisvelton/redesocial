@@ -4,5 +4,5 @@ namespace Prototype;
 
 interface Prototype
 {
-  public function clonar(): Prototype;
+  public function clonar();
 }

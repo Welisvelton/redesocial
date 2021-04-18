@@ -2,7 +2,7 @@
 
 namespace RedeSocial;
 
-abstract class aRedeSocial
+abstract class aRedeSocial 
 {
     protected $nome;
     protected $descricao;
