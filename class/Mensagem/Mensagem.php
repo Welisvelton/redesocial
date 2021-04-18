@@ -11,6 +11,7 @@ class Mensagem implements Prototype
   private  $conteudo;
   private  $de_usuario;
   private  $para_usuario;
+  private  $data_hora;
 
 
   public function getId()
@@ -57,4 +58,14 @@ class Mensagem implements Prototype
   {
     return clone $this;
   }
+
+    public function getData_hora()
+    {
+        return $this->data_hora;
+    }
+
+    public function setData_hora($data_hora)
+    {
+        $this->data_hora = $data_hora;
+    }
 }

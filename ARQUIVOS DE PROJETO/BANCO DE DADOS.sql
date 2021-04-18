@@ -5,5 +5,8 @@ use ew_rede_social;
 
 
 select * from usuario;
+select * from mensagem;
+
+
 
 
