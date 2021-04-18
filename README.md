@@ -39,7 +39,6 @@ com as seguintes funcionalidades:
 As seguintes ferramentas foram usadas na construção do projeto:
 
 - [PHP](https://www.php.net/)
-- [Bootstrap](https://getbootstrap.com/)
 - [MySQL](https://www.mysql.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [XAMPP](https://www.apachefriends.org/pt_br/index.html)
@@ -58,30 +57,32 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 $ cd /xampp/htdocs
 
 # Execute o comando abaixo para clonar o projeto.
-$ git clone https://github.com/CardimEmersson/desafio.git
+$ git clone https://github.com/Welisvelton/redesocial
 
 # Execute o programa Xampp e ative o apache e mysql
 
 # No seu navegador acesse a url abaixo
 $ http://localhost/phpmyadmin/
 
-# Importe o arquivo sql_desafio.sql que está dentro do projeto e clique em executar
+# Importe o arquivo BANCO DE DADOS.sql que está dentro da pasta ARQUIVOS DE PROJETO e clique em executar
 
 # Em uma nova aba do seu navegador acesse a url abaixo
-$ http://localhost/desafio/
+$ http://localhost/redesocial/instalar.php
+
+# Logo em seguida acesse
+$ http://localhost/redesocial/
 ```
 
 ### Versões
 
 - [PHP Version 7.4.2]
-- [Bootstrap Version 4.5]
 - [VSCode August 2020 (version 1.49)]
 - [XAMPP v.3.2.4]
 - [MySQL Workbench Version 8.0]
 
 ---
 
-### Autor
+### Autores
 
 <h4>Emersson Cardim Mota</h4>
 

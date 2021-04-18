@@ -60,11 +60,6 @@ try {
 }
 
 
-
-
-
-
-
 try {
   // $msgDAO = new MensagemDAO($conn);
 
@@ -89,7 +84,8 @@ try {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rede Social</title>
-  <link href="/assets/css/style.css" rel="stylesheet" ></link>
+  <link href="/assets/css/style.css" rel="stylesheet">
+  </link>
 
 </head>
 
@@ -119,7 +115,7 @@ try {
 
   <div class="container-usuarios">
     <div>
-  
+
       <br>
     </div>
     <?php if (!empty($usu)) : ?>
