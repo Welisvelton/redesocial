@@ -2,7 +2,9 @@
 
 namespace Usuario;
 
-class Usuario extends aUsuario implements PrototypeUsuario
+use Prototype\Prototype;
+
+class Usuario extends aUsuario implements Prototype
 {
 
     public function __construct(
@@ -26,6 +28,4 @@ class Usuario extends aUsuario implements PrototypeUsuario
     {
         return clone $this;
     }
-
-
 }
