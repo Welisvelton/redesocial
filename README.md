@@ -2,25 +2,25 @@
     Rede Social
 </h1>
 
-<h5>1) Seu time na empresa XPTO Tecnologia é composta por dois projetistas de
+<p>1) Seu time na empresa XPTO Tecnologia é composta por dois projetistas de
 aplicações web. A XPTO Tecnologia foi contratada por um cliente da área de
 inovação para um projeto de construção de uma nova rede social. O cliente
 estabeleceu os seguintes requisitos para o desenvolvimento dessa nova rede social:
-</h5>
-- a) utilização de todos padrões de projeto criacionais;
-- b) indicação de atendimento aos princípios SOLID;
-- c) modelagem da solução
+</p>
+a) utilização de todos padrões de projeto criacionais; </br>
+b) indicação de atendimento aos princípios SOLID; </br>
+c) modelagem da solução </br>
 
 <p align="left">
 Nesse contexto, na primeira fase do projeto vocês deverão fornecer uma rede social
 com as seguintes funcionalidades:
 </p>
-- 1) A rede social poderá possui diferentes formas de representação: “Insta”, “Face”, “Tip Top” 
-- 2) Possibilitar incluir e remover usuários;
-- 3) Possibilitar incluir e remover mensagens;
-- 4) Possibilitar envio de mensagens entre usuários;
-- 5) Conexão com banco de dados. 
-- 6) Criação das telas (Opcional)
+1) A rede social poderá possui diferentes formas de representação: “Insta”, “Face”, “Tip Top” </br>
+2) Possibilitar incluir e remover usuários; </br>
+3) Possibilitar incluir e remover mensagens; </br>
+4) Possibilitar envio de mensagens entre usuários; </br>
+5) Conexão com banco de dados. </br>
+6) Criação das telas (Opcional) </br>
 
 <h4> Status do projeto: Concluído ✔ </h4>
 
