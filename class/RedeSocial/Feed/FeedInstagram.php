@@ -1,7 +1,6 @@
 <?php
- 
-namespace RedeSocial\Feed;
 
+namespace RedeSocial\Feed;
 class FeedInstagram extends aFeed
 {
 

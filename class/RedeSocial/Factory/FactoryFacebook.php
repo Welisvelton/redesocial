@@ -4,8 +4,6 @@ namespace RedeSocial\Factory;
 
 use RedeSocial\aRedeSocial;
 use RedeSocial\Facebook;
-
-
 class FactoryFacebook implements FactoryRedeSocial
 {
   public function criarRedeSocial():aRedeSocial

@@ -13,7 +13,7 @@ abstract class aStory
         $this->foto    = $foto;
     }
 
-    public function publicar()
+    public function postar()
     {
 
     }

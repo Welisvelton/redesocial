@@ -2,21 +2,8 @@
 
 use ConexaoDB\ConexaoDB;
 use Login\LoginUsuario;
-use Mensagem\BuilderMensagem;
-use Mensagem\DAO\MensagemDAO;
-use Mensagem\Mensagem;
-use RedeSocial\Factory\{
-  FactoryInstagram,
-  FactoryFacebook,
-  FactoryTikTok
-};
-
-use Usuario\{
-  aUsuario,
-  Factory\FactoryUsuario,
-  DAO\UsuarioDAO
-};
-
+use RedeSocial\Factory\{ FactoryInstagram, FactoryFacebook, FactoryPostFacebook, FactoryTikTok };
+use Usuario\{ aUsuario, Factory\FactoryUsuario, DAO\UsuarioDAO };
 
 require(__DIR__ . "/class/Autoloading.php");
 
@@ -25,6 +12,7 @@ try {
   $factory = new FactoryFacebook();
   $redeSocial = $factory->criarRedeSocial();
 
+  /* */
   $conn = ConexaoDB::getConexao();
   $usuarioDAO = new UsuarioDAO($conn);
 } catch (Exception $e) {
@@ -34,52 +22,41 @@ try {
 $factoryUsuario = new FactoryUsuario();
 
 try {
-  $dadosLogado = LoginUsuario::getDadosLogin();
 
+  /* A variavel $dadosLogado recebe alguns dados que são gravados na sessão de login */
+  $dadosLogado = LoginUsuario::getDadosLogin();
   if (!empty($dadosLogado)) {
     $usu = $usuarioDAO->getUsuarioId($dadosLogado['idUsuario']);
+
+    /** Abstract Factory - uma fábrica que cria vários */
+    $factoryPost = new FactoryPostFacebook();
+
+   $feed = $factoryPost->criarFeed(
+      $usu,
+      '/caminho/da/foto/a/ser/postada.jpeg',
+      "Final de semana de muito trabalho na rede social");
+
+    $story =  $factoryPost->criarStory($usu, '/caminho/da/foto/final-de-semana-chegadno-ao-fim.jpeg');
+
+    $feed->postar();
+    $story->postar();
   }
 
-
+  /** Inicia a ação de logar */
   if (!empty($_POST['email'])) {
-
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
-
-    LoginUsuario::logar($email, $senha);
+    LoginUsuario::logar($email, $senha); // Faz login
   }
 
-
+  /* Aciona o método para fazer logout */
   if (isset($_GET['sair'])) {
     LoginUsuario::logout();
   }
 } catch (Exception $e) {
-  echo $msgSistema = $e->getMessage();
-} finally {
-  $msgSistema;
+  $msgSistema = $e->getMessage();
 }
 
-
-
-
-
-
-
-try {
-  // $msgDAO = new MensagemDAO($conn);
-
-  $bmsg = new BuilderMensagem();
-  $bmsg->criarTexto("Este é o texto da mensagem ok!");
-  $bmsg->criarAudio("Este é meu áudio");
-  $msg = $bmsg->getResult();
-
-
-  $encaminhar = $msg->clonar();
-
-  $encaminhar->setDe_usuario(3);
-} catch (Exception $e) {
-  echo $e->getMessage();
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -89,7 +66,7 @@ try {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rede Social</title>
-  <link href="/assets/css/style.css" rel="stylesheet" ></link>
+  <link href="/assets/css/style.css?v1" rel="stylesheet"> </link>
 
 </head>
 
@@ -97,7 +74,6 @@ try {
 
   <div class="barra-superior">
     <strong><?= $redeSocial->getNome() ?> </strong> &nbsp; &nbsp;
-
 
     <form action="" method="POST" class="form-login">
       <?php if (!empty($usu)) : ?>
@@ -113,13 +89,11 @@ try {
         </a>
       <?php endif; ?>
     </form>
-
-
   </div>
 
   <div class="container-usuarios">
     <div>
-  
+
       <br>
     </div>
     <?php if (!empty($usu)) : ?>
@@ -133,28 +107,17 @@ try {
             </div>
           </div>
         </a>
-
-
-
       <?php endforeach; ?>
     <?php endif ?>
-    Clique para iniciar uma conversa
+   
   </div>
 
-
-
-
   <?php if (!empty($usu)) : ?>
-
     <div class="container-chat">
-
       <iframe src="" id="chat" name="chat"></iframe>
     </div>
-
-
   <?php endif; ?>
 
   <?php include(__DIR__ . "/footer.php"); ?>
 </body>
-
 </html>

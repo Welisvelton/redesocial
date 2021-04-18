@@ -10,7 +10,6 @@ class LoginUsuario implements Login
 {
     public static function logar($email, $senha)
     {
-        session_start();
         $conn = ConexaoDB::getConexao();
         $usuDAO = new UsuarioDAO($conn);
 

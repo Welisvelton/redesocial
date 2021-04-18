@@ -1,6 +1,5 @@
 <div class="footer" >
 
-
 </div>
 
 <div class="botao-excluir-conta">

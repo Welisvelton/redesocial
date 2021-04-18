@@ -4,33 +4,20 @@ use Login\LoginUsuario;
 use Mensagem\BuilderMensagem;
 use Mensagem\DAO\MensagemDAO;
 use Mensagem\Mensagem;
-use RedeSocial\Factory\{
-  FactoryInstagram,
-  FactoryFacebook,
-  FactoryTikTok
-};
-
-use Usuario\{
-  aUsuario,
-  Factory\FactoryUsuario,
-  DAO\UsuarioDAO
-};
-
+use RedeSocial\Factory\{ FactoryInstagram, FactoryFacebook, FactoryTikTok };
+use Usuario\{ aUsuario, Factory\FactoryUsuario, DAO\UsuarioDAO };
 
 require(__DIR__ . "/class/Autoloading.php");
 
 try {
-    $conn = ConexaoDB::getConexao();
+  $conn = ConexaoDB::getConexao();
 
-$usuDAO = new UsuarioDAO($conn);
-$usuDAO->createTable();
+  $usuDAO = new UsuarioDAO($conn);
+  $usuDAO->createTable();
 
-$msDAO = new MensagemDAO($conn);
-$msDAO->createTable();
+  $msDAO = new MensagemDAO($conn);
+  $msDAO->createTable();
+
 } catch (Exception $e) {
     echo $e->getMessage();
 }
-
-
-
-?>
