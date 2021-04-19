@@ -70,7 +70,7 @@ try {
         <strong><?= $redeSocial->getNome() ?> </strong> &nbsp; &nbsp;
 
 
-        <form action="" method="POST" class="form-login">
+        <form action="/index.php" method="POST" class="form-login">
             <?php if (!empty($usu)) : ?>
             <span> Olá, <?= $usu->getNome(); ?>!</span> &nbsp;
             <a href="?sair"> <input type="button" value="Sair"></a>
